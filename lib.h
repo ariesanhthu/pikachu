@@ -16,7 +16,7 @@
 
 struct Board{
     int row = 4; //default row
-    int col = 6; // default column
+    int col = 6; //default column
     int** board; 
     char** poke; //display chararter on each cell
 };

@@ -1,12 +1,12 @@
 #pragma once
 #include "consoleSetting.h"
 
-void clearSreen() {
+void clearScreen() {
     HANDLE                     hStdOut;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     DWORD                      count;
     DWORD                      cellCount;
-    COORD                      homeCoords = { 0, 0 };
+    COORD                      homeCoords = {0, 0};
 
     hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
     if (hStdOut == INVALID_HANDLE_VALUE) return;
@@ -37,7 +37,8 @@ void clearSreen() {
     SetConsoleCursorPosition( hStdOut, homeCoords );
 }
 
-void ResizeWindow(int posx, int posy, int width, int length)
+//Move the window to the new position and resize it
+void resizeWindow(int posx, int posy, int width, int length)
 {
     RECT rectClient, rectWindow;
     HWND hWnd = GetConsoleWindow();
@@ -46,6 +47,26 @@ void ResizeWindow(int posx, int posy, int width, int length)
     MoveWindow(hWnd, posx, posy, width, length, TRUE);
 }
 
+void setColor (int back_color, int text_color) {
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    int color_code = 16 * back_color + text_color;
+
+    SetConsoleTextAttribute(hStdOut, color_code);
+}
+
+void showConsoleCursor (bool showFlag) {
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    CONSOLE_CURSOR_INFO cursor;
+
+    GetConsoleCursorInfo(hStdOut, &cursor);
+    cursor.bVisible = showFlag;
+    SetConsoleCursorInfo(hStdOut, &cursor);
+}
+
+
+//Move the cursor to the position x, y
 void gotoXY(int x, int y) {
     COORD coord;
     coord.X = x;
