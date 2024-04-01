@@ -47,7 +47,7 @@ void resizeWindow(int posx, int posy, int width, int length)
     MoveWindow(hWnd, posx, posy, width, length, TRUE);
 }
 
-void setColor (int back_color, int text_color) {
+void setColor(int back_color, int text_color) {
     HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
     int color_code = 16 * back_color + text_color;
@@ -55,7 +55,7 @@ void setColor (int back_color, int text_color) {
     SetConsoleTextAttribute(hStdOut, color_code);
 }
 
-void showConsoleCursor (bool showFlag) {
+void showConsoleCursor(bool showFlag) {
     HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
     CONSOLE_CURSOR_INFO cursor;

@@ -14,7 +14,7 @@
 // For console settings
 #include <windows.h>
 
-struct Board{
+struct BoardState{
     int row = 4; //default row
     int col = 6; //default column
     int** board; 
