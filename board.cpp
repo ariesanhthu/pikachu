@@ -9,12 +9,12 @@ void deleteMem(BoardState &a){
 
 void generateBoard(BoardState &a) {
     a.board = new int* [a.row + 2];
-    for (int i = 0; i < a.row + 2; i++)
-        a.board[i] = new int[a.col + 2];
 
-    for (int i = 0; i < a.row + 2; i++)
+    for (int i = 0; i < a.row + 2; i++) {
+        a.board[i] = new int[a.col + 2];
         for (int j = 0; j < a.col + 2; j++)
             a.board[i][j] = 0;
+    }
 
     int count = 0;
     char gen = 'A';
@@ -23,7 +23,7 @@ void generateBoard(BoardState &a) {
         if ((int) (gen - 'A' + 1) * 4 < a.row * a.col){
             for (int i = 1; (i <= 4) && (count <= a.row * a.col); ){
                 int x = rand() % a.row + 1;
-                int y = rand() % a.col + 1;
+                int y = rand() % a.col + 1; 
                 if (a.board[x][y] == 0){
                     i++;
                     a.board[x][y] = (int) gen;
