@@ -7,6 +7,14 @@ void deleteMem(BoardState &a){
     delete[] a.board;
 }
 
+/*
+Idea:
+    - Bảng sẽ tạo ra từ từ các kí tự bắt đầu từ 'A' cho đến khi mỗi kí tự đủ 4 lần
+    - Mỗi kí tự sẽ được chuyển về 1-base. m Ví dụ 1 là A, 2 là B, ...
+    - Để kí tự được sinh ra thì các kí tự trước đó đã được sinh ra. Chính vì thế nên điều kiện để được kí tự sinh ra là số đại diện cho kí tự đó nhân 4 phải bé hơn tổng số phần tử của mảng
+    - Sau khi mỗi kí tự sinh ra để đủ 4 thì có thể còn dư từ 0 - 3 ô nên là sẽ có thêm đk thê có thể lắp đầy các ô thừa còn lại
+    - Sau mỗi lần sinh ra sẽ có biến count để kiểm tra số phần tử, nếu count đủ bằng số lượng phần tử thì sẽ break vòng lặp 
+*/
 void generateBoard(BoardState &a) {
     a.board = new int* [a.row + 2];
 
