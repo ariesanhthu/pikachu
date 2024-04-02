@@ -1,6 +1,7 @@
 #pragma once
 #define _WIN32_WINNT 0x0500
 
+
 //Input and output format library
 #include <iostream>
 #include <iomanip>
@@ -14,9 +15,11 @@
 // For console settings
 #include <windows.h>
 
+using namespace std;
+
 struct BoardState{
     int row = 4; //default row
     int col = 6; //default column
     int** board; 
-    char** poke; //display chararter on each cell
+    char** display; //display chararter on each cell
 };

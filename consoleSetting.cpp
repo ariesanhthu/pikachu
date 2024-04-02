@@ -69,7 +69,7 @@ void showConsoleCursor(bool showFlag) {
 //Move the cursor to the position x, y
 void gotoXY(int x, int y) {
     COORD coord;
-    coord.X = x;
-    coord.Y = y;
+    coord.X = y;
+    coord.Y = x;
     SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
