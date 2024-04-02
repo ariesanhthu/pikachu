@@ -2,6 +2,27 @@
 #include "gui.cpp"
 #include "account.cpp"
 
+/*
+    SHOW THIS TEXT IF THE PLAYER WIN THE GAME
+*/
+void loadingPage()
+{
+    int color = 1;
+    for (int i = 3; i < 50; i++)
+    {
+        SetColor(0, (++color) % 10 + 3);
+        printLogo();
+        cout << "\t __     ______  _    _  __          _______ _   _ \n"
+                "\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
+                "\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
+                "\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
+                "\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
+                "\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
+        Sleep(1);
+        ClearScreen();
+    }
+}
+
 int main()
 {
 
@@ -126,7 +147,6 @@ int main()
             string m1 = "others/music_" + to_string(rand() % 4 + 1) + ".wav";
             PlaySound(TEXT(m1.c_str()), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
         }
-        
         // Gameplay
         while (menu == 5)
         {
@@ -215,8 +235,6 @@ int main()
                     for (int u = 0; u < 2; u++)
                         line[i][u] = 0;
 
-                
-
                 // If there are no cells left, then let the player continue playing or not
                 if (!player.count)
                 {
@@ -224,19 +242,24 @@ int main()
                     gotoxy(1, 0);
                     curX = board.row + 2, curY = board.col + 2;
                     FcurX = curX, FcurY = curY;
-                    showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, nmCheck, nightmare, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
+                    // showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, nmCheck, nightmare, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
+
+                    // WIN GAME
+                    ClearScreen();
+                    loadingPage();
+
                     SetColor(0, 6);
-                    gotoxy(12, (board.col + 2) * 5 + 5);
+                    gotoxy(5, 5);
                     cout << "Victory royale!!!!";
-                    gotoxy(13, (board.col + 2) * 5 + 5);
+                    gotoxy(6, 5);
                     cout << "Your score: " << player.score << endl;
 
                     // Player choice
-                    gotoxy(14, (board.col + 2) * 5 + 5);
+                    gotoxy(7, 5);
                     cout << "Continue ?";
-                    gotoxy(15, (board.col + 2) * 5 + 5);
+                    gotoxy(8, 5);
                     cout << "ENTER to continue.";
-                    gotoxy(16, (board.col + 2) * 5 + 5);
+                    gotoxy(9, 5);
                     cout << "ESC to quit.";
 
                     char input;

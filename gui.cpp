@@ -1,6 +1,20 @@
 #include "gui.h"
 #include "account.h"
 
+// HEADER NAME
+void printLogo()
+{
+    cout << "\t ________  ___  ___  __    ________  ________  ___  ___  ___  ___     \n"
+            "\t|\\   __  \\|\\  \\|\\  \\|\\  \\ |\\   __  \\|\\   ____\\|\\  \\|\\  \\|\\  \\|\\  \\    \n"
+            "\t\\ \\  \\|\\  \\ \\  \\ \\  \\/  /|\\ \\  \\|\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\\\\\  \\   \n"
+            "\t \\ \\   ____\\ \\  \\ \\   ___  \\ \\   __  \\ \\  \\    \\ \\   __  \\ \\  \\\\\\  \\  \n"
+            "\t  \\ \\  \\___|\\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\\\  \\ \n"
+            "\t   \\ \\__\\    \\ \\__\\ \\__\\\\ \\__\\ \\__\\ \\__\\ \\_______\\ \\__\\ \\__\\ \\_______\\\n"
+            "\t    \\|__|     \\|__|\\|__| \\|__|\\|__|\\|__|\\|_______|\\|__|\\|__|\\|_______|";
+    cout << endl
+         << endl;
+}
+
 // Generating menu
 void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int &mCurX, bool &nmCheck, bool &succlog, bool &cont, int &lvl)
 {
@@ -216,53 +230,34 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
     }
 }
 
-void printLogo()
-{
-    // for(int i = 3; i < 9; i++)
-    // {
-
-    //     SetColor(0, i);
-    cout << " ________  ___  ___  __    ________  ________  ___  ___  ___  ___     \n"
-            "|\\   __  \\|\\  \\|\\  \\|\\  \\ |\\   __  \\|\\   ____\\|\\  \\|\\  \\|\\  \\|\\  \\    \n"
-            "\\ \\  \\|\\  \\ \\  \\ \\  \\/  /|\\ \\  \\|\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\\\\\  \\   \n"
-            " \\ \\   ____\\ \\  \\ \\   ___  \\ \\   __  \\ \\  \\    \\ \\   __  \\ \\  \\\\\\  \\  \n"
-            "  \\ \\  \\___|\\ \\  \\ \\  \\\\ \\  \\ \\  \\ \\  \\ \\  \\____\\ \\  \\ \\  \\ \\  \\\\\\  \\ \n"
-            "   \\ \\__\\    \\ \\__\\ \\__\\\\ \\__\\ \\__\\ \\__\\ \\_______\\ \\__\\ \\__\\ \\_______\\\n"
-            "    \\|__|     \\|__|\\|__| \\|__|\\|__|\\|__|\\|_______|\\|__|\\|__|\\|_______|";
-    cout << endl
-         << endl;
-    //     ClearScreen();
-    // }
-}
 // Print the menu
 void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
 {
     SetColor(0, 3);
     printLogo();
 
-    SetColor(0, 6);
     switch (menu)
     {
     case 1:
     {
 
         SetColor(0, (mCurX == 1) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |      START     |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |      START     |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
 
         SetColor(0, (mCurX == 2) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |   LEADERBOARD  |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |   LEADERBOARD  |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
 
         // END APPLICATION
         SetColor(0, (mCurX == 3) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |      Quit      |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |      Quit      |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, 6);
         break;
@@ -270,24 +265,24 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
     case 2:
     {
         SetColor(0, (mCurX == 1) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |      EASY      |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |      EASY      |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, (mCurX == 2) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |     MEDIUM     |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |     MEDIUM     |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, (mCurX == 3) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |      HARD      |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |      HARD      |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, (mCurX == 4) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |     CUSTOM     |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |     CUSTOM     |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, 6);
         break;
@@ -384,70 +379,32 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
             gotoxy(28 + i, 8);
             cout << "# " << setw(5) << setfill(' ') << lb.hsHard[i] << " - " << setw(73) << setfill(' ') << lb.userHard[i] << " #";
         }
-        // gotoxy(33, 8);
-        // cout << "##########################################";
+        gotoxy(33, 8);
+        cout << "#####################################################################################";
 
-        // SetColor(0, 5);
-        // gotoxy(25, 53);
-        // cout << "##########################################";
-        // gotoxy(26, 53);
-        // cout << "#                NIGHTMARE               #";
-        // gotoxy(27, 53);
-        // cout << "##########################################";
-        // for (int i = 0; i < 5; i++){
-        //     gotoxy(28 + i, 53);
-        //     cout << "# " << setw(5) << setfill(' ') << lb.hsNightmare[i] << " - " << setw(30) << setfill(' ') << lb.userNightmare[i] << " #";
-        // }
-        // gotoxy(33, 53);
-        // cout << "##########################################";
         break;
     }
-    // case 7:
-    // {
-    //     SetColor(0, (mCurX == 1) ? 3 : 6);
-    //     cout << "\t\t\t ==================" << endl;
-    //     cout << "\t\t\t |      GUEST     |" << endl;
-    //     cout << "\t\t\t ==================" << endl
-    //          << endl;
-    //     SetColor(0, (mCurX == 2) ? 3 : 6);
-    //     cout << "\t\t\t ==================" << endl;
-    //     cout << "\t\t\t |      LOGIN     |" << endl;
-    //     cout << "\t\t\t ==================" << endl
-    //          << endl;
-    //     SetColor(0, (mCurX == 3) ? 3 : 6);
-    //     cout << "\t\t\t ==================" << endl;
-    //     cout << "\t\t\t |     REGISTER   |" << endl;
-    //     cout << "\t\t\t ==================" << endl
-    //          << endl;
-    //     SetColor(0, (mCurX == 4) ? 3 : 6);
-    //     cout << "\t\t\t ==================" << endl;
-    //     cout << "\t\t\t |      BACK      |" << endl;
-    //     cout << "\t\t\t ==================" << endl
-    //          << endl;
-    //     SetColor(0, 6);
-    //     break;
-    // }
     case 8:
     {
         SetColor(0, (mCurX == 1) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |    NEW GAME    |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |    NEW GAME    |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, (mCurX == 2) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |    CONTINUE    |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |    CONTINUE    |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, (mCurX == 3) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |     LOGOUT     |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |     LOGOUT     |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, (mCurX == 4) ? 3 : 6);
-        cout << "\t\t\t ==================" << endl;
-        cout << "\t\t\t |      BACK      |" << endl;
-        cout << "\t\t\t ==================" << endl
+        cout << "\t\t\t\t ==================" << endl;
+        cout << "\t\t\t\t |      BACK      |" << endl;
+        cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, 6);
         break;

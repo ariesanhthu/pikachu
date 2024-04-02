@@ -8,24 +8,24 @@ void showSubMenu(int option)
 {
     // điều kiện: nếu đúng thì text color = 3, ngược lại = 6
     SetColor(0, (option == 1) ? 3 : 6);
-    cout << "\t\t\t ==================" << endl;
-    cout << "\t\t\t |      GUEST     |" << endl;
-    cout << "\t\t\t ==================" << endl
+    cout << "\t\t\t\t ==================" << endl;
+    cout << "\t\t\t\t |      GUEST     |" << endl;
+    cout << "\t\t\t\t ==================" << endl
          << endl;
     SetColor(0, (option == 2) ? 3 : 6);
-    cout << "\t\t\t ==================" << endl;
-    cout << "\t\t\t |      LOGIN     |" << endl;
-    cout << "\t\t\t ==================" << endl
+    cout << "\t\t\t\t ==================" << endl;
+    cout << "\t\t\t\t |      LOGIN     |" << endl;
+    cout << "\t\t\t\t ==================" << endl
          << endl;
     SetColor(0, (option == 3) ? 3 : 6);
-    cout << "\t\t\t ==================" << endl;
-    cout << "\t\t\t |     REGISTER   |" << endl;
-    cout << "\t\t\t ==================" << endl
+    cout << "\t\t\t\t ==================" << endl;
+    cout << "\t\t\t\t |     REGISTER   |" << endl;
+    cout << "\t\t\t\t ==================" << endl
          << endl;
     SetColor(0, (option == 4) ? 3 : 6);
-    cout << "\t\t\t ==================" << endl;
-    cout << "\t\t\t |      BACK      |" << endl;
-    cout << "\t\t\t ==================" << endl
+    cout << "\t\t\t\t ==================" << endl;
+    cout << "\t\t\t\t |      BACK      |" << endl;
+    cout << "\t\t\t\t ==================" << endl
          << endl;
     SetColor(0, 6);
 }
@@ -35,6 +35,7 @@ void showSubMenu(int option)
 */
 void showFormInput(bool isLoginForm)
 {
+    SetColor(0, 6);
     gotoxy(15, 30);
     cout << "USERNAME";
     gotoxy(16, 30);
@@ -77,7 +78,7 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
          */
         ClearScreen();
         // background color, text color
-        SetColor(0, 6);
+        SetColor(0, 3);
 
         // Brand Name
         printLogo();
@@ -145,14 +146,13 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
         // Login and register
         else
         {
-
             /*
                 SET UP
             */
             // FOMR INPUT
             showFormInput(log);
             ShowConsoleCursor(true);
-            SetColor(0, 3);
+            SetColor(0, 6);
 
             // Input username
             char c;
