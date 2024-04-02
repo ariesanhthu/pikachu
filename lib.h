@@ -1,5 +1,4 @@
 #pragma once
-<<<<<<< HEAD
 #define _WIN32_WINNT 0x0500 // This is using windows.h without errors
 // For the input and output format
 #include <iostream>
@@ -35,6 +34,8 @@
 #include <mmsystem.h>
 
 using namespace std;
+
+//define ascii code
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -76,34 +77,3 @@ struct LeaderBoard{
     int hsNightmare[5] = {};
     char userNightmare[5][32] = {};
 };
-=======
-#define _WIN32_WINNT 0x0500
-
-
-//Input and output format library
-#include <iostream>
-#include <iomanip>
-
-// Game logic and algorithm library
-#include <algorithm>
-#include <cmath>
-#include <vector>
-#include <deque>
-
-// For console settings
-#include <windows.h>
-
-using namespace std;
-
-struct BoardState{
-    int row = 4; //default row
-    int col = 6; //default column
-    int** board; 
-<<<<<<< HEAD
-    char** display; //display chararter on each cell
-};
-=======
-    char** poke; //display chararter on each cell
-};
->>>>>>> 3db1186dc918ce05353355aece2c7b25fcbd0d0e
->>>>>>> 9d8a31e36108d775e48dcbc59bbc42639c1abaaa

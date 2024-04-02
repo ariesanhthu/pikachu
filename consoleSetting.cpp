@@ -1,44 +1,48 @@
+// pragma is preprocessing: include unique library
 #pragma once
 #include "consoleSetting.h"
 
-void clearScreen() {
-    HANDLE                     hStdOut;
+void ClearScreen()
+{
+    HANDLE hStdOut;
     CONSOLE_SCREEN_BUFFER_INFO csbi;
-    DWORD                      count;
-    DWORD                      cellCount;
-    COORD                      homeCoords = {0, 0};
+    DWORD count;
+    DWORD cellCount;
+    COORD homeCoords = {0, 0};
 
-    hStdOut = GetStdHandle( STD_OUTPUT_HANDLE );
-    if (hStdOut == INVALID_HANDLE_VALUE) return;
+    hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    if (hStdOut == INVALID_HANDLE_VALUE)
+        return;
 
     /* Get the number of cells in the current buffer */
-    if (!GetConsoleScreenBufferInfo( hStdOut, &csbi )) return;
-    cellCount = csbi.dwSize.X *csbi.dwSize.Y;
+    if (!GetConsoleScreenBufferInfo(hStdOut, &csbi))
+        return;
+    cellCount = csbi.dwSize.X * csbi.dwSize.Y;
 
     /* Fill the entire buffer with spaces */
     if (!FillConsoleOutputCharacter(
-        hStdOut,
-        (TCHAR) ' ',
-        cellCount,
-        homeCoords,
-        &count
-    )) return;
+            hStdOut,
+            (TCHAR)' ',
+            cellCount,
+            homeCoords,
+            &count))
+        return;
 
     /* Fill the entire buffer with the current colors and attributes */
     if (!FillConsoleOutputAttribute(
-        hStdOut,
-        csbi.wAttributes,
-        cellCount,
-        homeCoords,
-        &count
-    )) return;
+            hStdOut,
+            csbi.wAttributes,
+            cellCount,
+            homeCoords,
+            &count))
+        return;
 
     /* Move the cursor home */
-    SetConsoleCursorPosition( hStdOut, homeCoords );
+    SetConsoleCursorPosition(hStdOut, homeCoords);
 }
 
-//Move the window to the new position and resize it
-void resizeWindow(int posx, int posy, int width, int length)
+/////////////////////////////////////////////////////////////
+void ResizeWindow(int posx, int posy, int width, int length)
 {
     RECT rectClient, rectWindow;
     HWND hWnd = GetConsoleWindow();
@@ -47,27 +51,33 @@ void resizeWindow(int posx, int posy, int width, int length)
     MoveWindow(hWnd, posx, posy, width, length, TRUE);
 }
 
-void setColor(int back_color, int text_color) {
-    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+///////////////////////////
+// Set color for console
+void SetColor(int backgound_color, int text_color)
+{
+    HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    int color_code = 16 * back_color + text_color;
-
-    SetConsoleTextAttribute(hStdOut, color_code);
+    int color_code = backgound_color * 16 + text_color;
+    SetConsoleTextAttribute(hStdout, color_code);
 }
 
-void showConsoleCursor(bool showFlag) {
-    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+////////////////////////////////////////
+// Hide the console cursor
+void ShowConsoleCursor(bool showFlag)
+{
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
 
-    CONSOLE_CURSOR_INFO cursor;
+    CONSOLE_CURSOR_INFO cursorInfo;
 
-    GetConsoleCursorInfo(hStdOut, &cursor);
-    cursor.bVisible = showFlag;
-    SetConsoleCursorInfo(hStdOut, &cursor);
+    GetConsoleCursorInfo(out, &cursorInfo);
+    cursorInfo.bVisible = showFlag; // set the cursor visibility
+    SetConsoleCursorInfo(out, &cursorInfo);
 }
 
-
-//Move the cursor to the position x, y
-void gotoXY(int x, int y) {
+/////////////////////////////
+// Move to row x, col y of the console
+void gotoxy(int x, int y)
+{
     COORD coord;
     coord.X = y;
     coord.Y = x;

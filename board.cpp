@@ -58,56 +58,56 @@ void generateBoard(BoardState &a) {
 }
 
 void printCell(int bgColor, int cellColor, int data, int x, int y, bool nmCheck, bool** nightmare){
-    setColor(bgColor, cellColor);
-    gotoXY(x * 3 + 2, y * 5 + 2);
+    SetColor(bgColor, cellColor);
+    gotoxy(x * 3 + 2, y * 5 + 2);
     cout << "-----";
-    gotoXY(x * 3 + 3, y * 5 + 2);
+    gotoxy(x * 3 + 3, y * 5 + 2);
     if(nmCheck && nightmare[x][y])
         cout << "|   |";
     else
         cout << "| " << (char) data << " |";
-    gotoXY(x * 3 + 4, y * 5 + 2);
+    gotoxy(x * 3 + 4, y * 5 + 2);
     cout << "-----";
 }
 
 void clearCell(int color, BoardState a, int x, int y){
-    setColor(color, 7);
-    gotoXY(x * 3 + 2, y * 5 + 2);
+    SetColor(color, 7);
+    gotoxy(x * 3 + 2, y * 5 + 2);
     for(int i = 0; i < 5; i++)
         cout << a.display[x * 3][y * 5 + i];
 	
-    gotoXY(x * 3 + 3, y * 5 + 2);
+    gotoxy(x * 3 + 3, y * 5 + 2);
     for(int i = 0; i < 5; i++)
         cout << a.display[x * 3 + 1][y * 5 + i];
 	
-    gotoXY(x * 3 + 4, y * 5 + 2);
+    gotoxy(x * 3 + 4, y * 5 + 2);
     for(int i = 0; i < 5; i++)
         cout << a.display[x * 3 + 2][y * 5 + i];
 }
 
 void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY, int &x1, int &y1, int &x2, int &y2, bool nmCheck, bool** nightmare, time_t suggtime, bool &endsugg, int sugx1, int sugy1, int sugx2, int sugy2, bool &newgame, bool &hint, bool &choose_1, bool &choose_2){
-    showConsoleCursor(false);
-    gotoXY(1, 0);
+    ShowConsoleCursor(false);
+    gotoxy(1, 0);
 	
 	// If this is newgame, print all cells of the board
     if(newgame)
     {
-        setColor(0, 6);
+        SetColor(0, 6);
         for (int i = 0; i <= a.col + 1; i++)
             cout << "####";
         cout << "####" << endl;
 		
-        gotoXY(3 * (a.row + 2) + 2, 0);
+        gotoxy(3 * (a.row + 2) + 2, 0);
         for (int i = 0; i <= a.col + 1; i++)
             cout << "#####";
         cout << "####" << endl;
 
         for (int i = 0; i <= a.row + 1; i++){
-            setColor(0, 6);
+            SetColor(0, 6);
             for (int u = 0; u < 3; u++){
-                gotoXY(i * 3 + 2 + u, 0);
+                gotoxy(i * 3 + 2 + u, 0);
                 cout << "# ";
-                gotoXY(i * 3 + 2 + u, 5 * (a.col + 2) + 2);
+                gotoxy(i * 3 + 2 + u, 5 * (a.col + 2) + 2);
                 cout << " #";
             }
             for (int j = 0; j <= a.col + 1; j++)
@@ -225,6 +225,139 @@ void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY
                 x2 = 0, y2 = 0;
                 choose_2 = false;
             }
+        }
+    }
+}
+
+
+//////////////////////////////////
+// Shuffle the board
+void resetBoard(BoardState a){
+    int cnt[26];
+    for (int i = 0; i < 26; i++)
+        cnt[i] = 0;
+
+    for (int i = 1; i <= a.row; i++){
+        for (int j = 1; j <= a.col; j++){
+            if(a.board[i][j] != 0){
+                cnt[a.board[i][j] - (int) 'A'] ++;
+                a.board[i][j] = -1;
+            }
+        }
+    }
+
+    for (int i = 1; i <= a.row; i++){
+        for (int j = 1; j <= a.col; j++){
+            if (a.board[i][j] == -1)
+                while (true){
+                    char gen = (char) (rand() % 25 + (int)'A');
+                    if (cnt[(int) (gen - 'A')] > 0){
+                        a.board[i][j] = (int) gen;
+                        cnt[(int) (gen - 'A')]--;
+                        break;
+                    }
+                }
+        }
+    }
+}
+
+
+/////////////////////////////////
+// Delete the memory used for the display array
+void deleteArt(BoardState &a){
+    for (int i = 0; i < 3 * (a.row + 2); i++)
+        delete[] a.display[i];
+    delete[] a.display;
+}
+
+
+//////////////////////////////////
+// Generate art for the background
+void generateArt(BoardState &a){
+    a.display = new char*[3 * (a.row + 2)];
+    for (int i = 0; i < 3 * (a.row + 2); i++)
+        a.display[i] = new char[5 * (a.col + 2)];
+
+    ifstream ifs;
+	if (a.row <= 6 && a.col <= 6)
+		ifs.open("others\\art_1.txt");
+    else if (a.row <= 8 && a.col <= 8)
+		ifs.open("others\\art_2.txt");
+	else 
+		ifs.open("others\\art_3.txt");
+    if(!ifs.is_open()){
+        for (int i = 0; i < 3 * (a.row + 2); i++){
+            for (int j = 0; j < 5 * (a.col + 2); j++){
+                a.display[i][j] = '.';
+            }
+        }
+    }
+    else{
+        for (int i = 0; i < 3 * (a.row + 2); i++){
+            string str;
+            getline(ifs, str, '\n');
+            for (int j = 0; j < 5 * (a.col + 2); j++){
+                a.display[i][j] = str[j];
+            }
+        }
+    }
+    ifs.close();
+}
+
+
+/////////////////////////////
+// Drawing matching line
+void drawLine(int line[][2])
+{
+    SetColor(0, 2);
+    for (int k = 0; k < 3; k++){
+        if(line[k+1][0] == 0 && line[k+1][1] == 0)
+            break;
+        int x1 = line[k][0], x2 = line[k+1][0], y1 = line[k][1], y2 = line[k+1][1];
+        if (x1 == x2){
+            if (y1 > y2)
+                swap (y1, y2);
+            for (int i = y1 * 5 + 4; i <= y2 * 5 + 4; i++){
+                    gotoxy(x1 * 3 + 3, i);
+                    cout << '@';
+                }
+        }
+        else{
+            if (x1 > x2)
+                swap (x1, x2);
+            for (int i = x1 * 3 + 3; i <= x2 * 3 + 3; i++){
+                    gotoxy(i, y1 * 5 + 4);
+                    cout << '@';
+                }
+        }
+    }
+}
+
+
+//////////////////////////////////////////////
+// Clear the matching line
+void clearLine(int line[][2], BoardState a)
+{
+    SetColor(0, 7);
+    for (int k = 0; k < 3; k++){
+        if(line[k+1][0] == 0 && line[k+1][1] == 0)
+            break;
+        int x1 = line[k][0], x2 = line[k+1][0], y1 = line[k][1], y2 = line[k+1][1];
+        if (x1 == x2){
+            if (y1 > y2)
+                swap (y1, y2);
+            for (int i = y1 * 5 + 4; i <= y2 * 5 + 4; i++){
+                    gotoxy(x1 * 3 + 3, i);
+                    cout << a.display[x1 * 3 + 1][i-2];;
+                }
+        }
+        else{
+            if (x1 > x2)
+                swap (x1, x2);
+            for (int i = x1 * 3 + 3; i <= x2 * 3 + 3; i++){
+                    gotoxy(i, y1 * 5 + 4);
+                    cout << a.display[i-2][y1 * 5 + 2];
+                }
         }
     }
 }

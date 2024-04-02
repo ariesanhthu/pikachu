@@ -1,40 +1,93 @@
 #include "account.h"
 #include "gui.h"
+
+/*
+    MENU LOGIN
+*/
+void showSubMenu(int option)
+{
+    // điều kiện: nếu đúng thì text color = 3, ngược lại = 6
+    SetColor(0, (option == 1) ? 3 : 6);
+    cout << "\t\t\t ==================" << endl;
+    cout << "\t\t\t |      GUEST     |" << endl;
+    cout << "\t\t\t ==================" << endl
+         << endl;
+    SetColor(0, (option == 2) ? 3 : 6);
+    cout << "\t\t\t ==================" << endl;
+    cout << "\t\t\t |      LOGIN     |" << endl;
+    cout << "\t\t\t ==================" << endl
+         << endl;
+    SetColor(0, (option == 3) ? 3 : 6);
+    cout << "\t\t\t ==================" << endl;
+    cout << "\t\t\t |     REGISTER   |" << endl;
+    cout << "\t\t\t ==================" << endl
+         << endl;
+    SetColor(0, (option == 4) ? 3 : 6);
+    cout << "\t\t\t ==================" << endl;
+    cout << "\t\t\t |      BACK      |" << endl;
+    cout << "\t\t\t ==================" << endl
+         << endl;
+    SetColor(0, 6);
+}
+
+/*
+    FORM INPUT
+*/
+void showFormInput(bool isLoginForm)
+{
+    gotoxy(15, 30);
+    cout << "USERNAME";
+    gotoxy(16, 30);
+    cout << "##################################";
+    gotoxy(17, 30);
+    cout << "#                                #";
+    gotoxy(18, 30);
+    cout << "##################################";
+    gotoxy(20, 30);
+    cout << "PASSWORD";
+    gotoxy(21, 30);
+    cout << "##################################";
+    gotoxy(22, 30);
+    cout << "#                                #";
+    gotoxy(23, 30);
+    cout << "##################################";
+
+    if (!isLoginForm)
+    {
+        gotoxy(25, 30);
+        cout << "PASSWORD CONFIRM";
+        gotoxy(26, 30);
+        cout << "##################################";
+        gotoxy(27, 30);
+        cout << "#                                #";
+        gotoxy(28, 30);
+        cout << "##################################";
+    }
+}
+
 void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playerid, bool &succlog, int lvlcap[], time_t &oriTime)
 {
-    // This is the login menu
+    // Login menu
     bool log = true;
     int submenu = 1;
+
     while (!succlog)
     {
+        /* SETUP
+         */
         ClearScreen();
+        // background color, text color
         SetColor(0, 6);
 
         // Brand Name
         printLogo();
-        
-        cout << endl
-             << endl;
+
         if (submenu == 1)
         {
-            SetColor(0, (mCurX == 1) ? 3 : 6);
-            cout << "\t\t\t\t ##################" << endl;
-            cout << "\t\t\t\t #     LOGIN      #" << endl;
-            cout << "\t\t\t\t ##################" << endl
-                 << endl;
-            SetColor(0, (mCurX == 2) ? 3 : 6);
-            cout << "\t\t\t\t ##################" << endl;
-            cout << "\t\t\t\t #    REGISTER    #" << endl;
-            cout << "\t\t\t\t ##################" << endl
-                 << endl;
-            SetColor(0, (mCurX == 3) ? 3 : 6);
-            cout << "\t\t\t\t ##################" << endl;
-            cout << "\t\t\t\t #      QUIT      #" << endl;
-            cout << "\t\t\t\t ##################" << endl
-                 << endl;
-            SetColor(0, 6);
+            showSubMenu(mCurX);
 
             // Updating input from keyboard
+            // getch() reads a single character from the standard input
             int c = getch(), ch;
             if (c == 224)
                 switch (ch = getch())
@@ -44,12 +97,12 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                     if (mCurX > 1)
                         mCurX--;
                     else
-                        mCurX = 3;
+                        mCurX = 4;
                     break;
                 }
                 case KEY_DOWN:
                 {
-                    if (mCurX < 3)
+                    if (mCurX < 4)
                         mCurX++;
                     else
                         mCurX = 1;
@@ -58,62 +111,63 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                 }
             else if (c == KEY_SPACE || c == KEY_ENTER)
             {
-                if (mCurX == 3)
+                // fstream fs("data\\t.txt", ios::in);
+                // fs.write((char *)mCurX, 4);
+                // fs.close();
+
+                // start game without login
+
+                if (mCurX == 1)
                 {
-                    menu = 0;
-                    succlog = true;
+                    menu = 2;
+                    mCurX = 1;
+                    return;
                 }
                 else
-                {
-                    if (mCurX == 2)
+                    // BACK
+                    if (mCurX == 4)
+                    {
+                        // RETURN MAIN MENU
+                        menu = 1;
+                        mCurX = 1;
+                        return;
+                    }
+                    // REGISTER
+                    else if (mCurX == 3)
+                    {
                         log = false;
-                    mCurX = 1;
-                    submenu++;
-                }
+                    }
+                mCurX = 1;
+                submenu++;
             }
         }
 
         // Login and register
         else
         {
-            gotoxy(15, 30);
-            cout << "USERNAME";
-            gotoxy(16, 30);
-            cout << "##################################";
-            gotoxy(17, 30);
-            cout << "#                                #";
-            gotoxy(18, 30);
-            cout << "##################################";
-            gotoxy(20, 30);
-            cout << "PASSWORD";
-            gotoxy(21, 30);
-            cout << "##################################";
-            gotoxy(22, 30);
-            cout << "#                                #";
-            gotoxy(23, 30);
-            cout << "##################################";
 
-            if (!log)
-            {
-                gotoxy(25, 30);
-                cout << "PASSWORD CONFIRM";
-                gotoxy(26, 30);
-                cout << "##################################";
-                gotoxy(27, 30);
-                cout << "#                                #";
-                gotoxy(28, 30);
-                cout << "##################################";
-            }
-
+            /*
+                SET UP
+            */
+            // FOMR INPUT
+            showFormInput(log);
             ShowConsoleCursor(true);
             SetColor(0, 3);
 
-            // Inputing username
+            // Input username
             char c;
             int countChar = 0;
             gotoxy(17, 32);
             while (c = _getch())
             {
+                /*
+                    BACK TO MAIN MENU
+                */
+                if (c == KEY_ESCAPE)
+                {
+                    menu = 1;
+                    return;
+                }
                 if (c == KEY_ENTER)
                 {
                     player.username[countChar] = '\0';
@@ -138,10 +192,18 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
             cout << player.username;
             countChar = 0;
 
-            // Inputing password
+            // Input password
             gotoxy(22, 32);
             while (c = _getch())
             {
+                /*
+                    BACK TO MAIN MENU
+                */
+                if (c == KEY_ESCAPE)
+                {
+                    menu = 1;
+                    return;
+                }
                 if (c == KEY_ENTER)
                 {
                     player.password[countChar] = '\0';
@@ -157,7 +219,7 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                 }
                 else if (c != 8 && countChar < 20 && countChar >= 0)
                 {
-                    cout << "a";
+                    cout << "*";
                     player.password[countChar] = c;
                     countChar++;
                 }
@@ -172,6 +234,14 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                 char rePass[32] = "";
                 while (c = _getch())
                 {
+                    /*
+                        BACK TO MAIN MENU
+                    */
+                    if (c == KEY_ESCAPE)
+                    {
+                        menu = 1;
+                        return;
+                    }
                     if (c == KEY_ENTER)
                     {
                         rePass[countChar] = '\0';
@@ -187,7 +257,7 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                     }
                     else if (c != 8 && countChar < 20 && countChar >= 0)
                     {
-                        cout << "a";
+                        cout << "*";
                         rePass[countChar] = c;
                         countChar++;
                     }
@@ -195,6 +265,7 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                 if (strcmp(player.password, rePass))
                     check = false;
             }
+
             SetColor(0, 6);
             ShowConsoleCursor(false);
 
@@ -215,9 +286,17 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                     getch();
                 }
 
-                // If successfully login
+                /*
+                    LOGIN SUCCESSFULLY
+                */
                 if (succlog)
+                {
                     loadGame(player, playerid, a, lvlcap, oriTime);
+
+                    menu = 8;
+                    mCurX = 1;
+                    return;
+                }
             }
 
             // If both section is blank
@@ -267,7 +346,7 @@ void checkLogin(PlayerState player, int &playerid, bool &succ, int &submenu)
         cout << "WRONG USERNAME OR PASSWORD!";
         submenu = 1;
     }
-    getch();
+    // getch();
     ifs.close();
 }
 
@@ -390,6 +469,7 @@ void loadLB(LeaderBoard &lb)
 // Updating leaderboard
 void updateLB(LeaderBoard &lb, PlayerState player)
 {
+    // if(player.username == "") return;
     switch (player.mode)
     {
     // Easy mode
@@ -441,24 +521,6 @@ void updateLB(LeaderBoard &lb, PlayerState player)
                 }
                 lb.hsHard[i] = player.score;
                 strcpy(lb.userHard[i], player.username);
-                break;
-            }
-        break;
-    }
-
-    // Nightmare
-    case 4:
-    {
-        for (int i = 0; i < 5; i++)
-            if (lb.hsNightmare[i] < player.score)
-            {
-                for (int u = 4; u > i; u--)
-                {
-                    lb.hsNightmare[u] = lb.hsNightmare[u - 1];
-                    strcpy(lb.userNightmare[u], lb.userNightmare[u - 1]);
-                }
-                lb.hsNightmare[i] = player.score;
-                strcpy(lb.userNightmare[i], player.username);
                 break;
             }
         break;
