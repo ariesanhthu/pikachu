@@ -22,14 +22,14 @@ void goLeft(BoardState a, int x, int y, int n);
 // Shift-right function
 void goRight(BoardState a, int x, int y, int n);
 
-// Deleting memory used for nightmare array
-void deleteNightmare(BoardState a, bool **&nightmare);
+// // Deleting memory used for nightmare array
+// void deleteNightmare(BoardState a, bool **&nightmare);
 
-// Generate the nightmare array
-void generateNightmare(BoardState a, bool **&nightmare);
+// // Generate the nightmare array
+// void generateNightmare(BoardState a, bool **&nightmare);
 
-// Randomize the hidden cells of the board
-void resetNightmare(BoardState a, bool **nightmare);
+// // Randomize the hidden cells of the board
+// void resetNightmare(BoardState a, bool **nightmare);
 
 // Calculate highscore
 void calculateScore(PlayerState &player);

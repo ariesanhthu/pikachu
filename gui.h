@@ -2,7 +2,7 @@
 #include "consoleSetting.cpp"
 
 // Generate the menu
-void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int &mCurX, bool &nmCheck, bool &succlog, bool &cont, int &lvl);
+void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int &mCurX, bool &succlog, bool &cont, int &lvl);
 
 // Print the menu
 void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX);

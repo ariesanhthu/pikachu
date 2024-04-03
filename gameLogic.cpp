@@ -202,7 +202,7 @@ void goUp(BoardState a, int x, int y, int m)
     bool **temp;
     for(int i = x + 1; i <= m; i++)
         if(a.board[i][y])
-            printCell(0, a.board[i][y] % 5 + 9, a.board[i][y], i, y, 0, temp);
+            printCell(0, a.board[i][y] % 5 + 9, a.board[i][y], i, y);
         else
             clearCell(0, a, i, y);
 }
@@ -223,7 +223,7 @@ void goDown(BoardState a, int x, int y, int m)
     bool **temp;
     for(int i = x - 1; i > m; i--)
         if(a.board[i][y])
-            printCell(0, a.board[i][y] % 5 + 9, a.board[i][y], i, y, 0, temp);
+            printCell(0, a.board[i][y] % 5 + 9, a.board[i][y], i, y);
         else
             clearCell(0, a, i, y);
 }
@@ -244,7 +244,7 @@ void goLeft(BoardState a, int x, int y, int n)
     bool **temp;
     for(int i = y + 1; i <= n; i++)
         if(a.board[x][i])
-            printCell(0, a.board[x][i] % 5 + 9, a.board[x][i], x, i, 0, temp);
+            printCell(0, a.board[x][i] % 5 + 9, a.board[x][i], x, i);
         else
             clearCell(0, a, x, i);
 }
@@ -265,57 +265,9 @@ void goRight(BoardState a, int x, int y, int n)
     bool **temp;
     for(int i = y + 1; i > n; i--)
         if(a.board[x][i])
-            printCell(0, a.board[x][i] % 5 + 9, a.board[x][i], x, i, 0, temp);
+            printCell(0, a.board[x][i] % 5 + 9, a.board[x][i], x, i);
         else
             clearCell(0, a, x, i);
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-// Delete the memory used for nightmare array
-void deleteNightmare(BoardState a, bool **&nightmare)
-{
-    for (int i = 0; i < a.row + 2; i++)
-        delete[] nightmare[i];
-    delete[] nightmare;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-// Generate the nightmare array
-void generateNightmare(BoardState a, bool **&nightmare)
-{
-    nightmare = new bool*[a.row + 2];
-    for (int i = 0; i < a.row + 2; i++)
-        nightmare[i] = new bool[a.col + 2];
-
-    for (int i = 0; i < a.row + 2; i++)
-        for (int j = 0; j < a.col + 2; j++)
-            nightmare[i][j] = false;
-}
-
-
-//////////////////////////////////////////////////////////////////////////////////////
-// Randomize the cells that are going to be hidden in the next move
-void resetNightmare(BoardState a, bool **nightmare)
-{
-    srand(time(0));
-    for (int i = 0; i < a.row + 2; i++)
-        for (int j = 0; j < a.col + 2; j++)
-            if ((rand() % 50) % 2 == 0)
-                nightmare[i][j] = true;
-            else
-                nightmare[i][j] = false;
-    SetColor(0, 7);
-    for (int i = 1; i < a.row + 1; i++)
-        for (int j = 1; j < a.col + 1; j++)
-            if(a.board[i][j])
-                if(nightmare[i][j])
-                    printCell(0, 7, a.board[i][j], i, j, 1, nightmare);
-                else
-                    printCell(0, a.board[i][j] % 5 + 9, a.board[i][j], i, j, 1, nightmare);
-            else
-                clearCell(0, a, i, j);
 }
 
 

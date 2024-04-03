@@ -16,7 +16,7 @@ void printLogo()
 }
 
 // Generating menu
-void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int &mCurX, bool &nmCheck, bool &succlog, bool &cont, int &lvl)
+void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int &mCurX, bool &succlog, bool &cont, int &lvl)
 {
     printMenu(lb, row, col, menu, mCurX);
     // Keyboard input to interact with the menu
@@ -151,7 +151,7 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
                     mode = 4;
                     row = 10;
                     col = 10;
-                    nmCheck = true;
+                    // nmCheck = true;
                     break;
                 }
                 }
@@ -256,7 +256,7 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
         // END APPLICATION
         SetColor(0, (mCurX == 3) ? 3 : 6);
         cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |      Quit      |" << endl;
+        cout << "\t\t\t\t |      QUIT      |" << endl;
         cout << "\t\t\t\t ==================" << endl
              << endl;
         SetColor(0, 6);
