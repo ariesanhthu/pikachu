@@ -249,7 +249,7 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
 
         SetColor(0, (mCurX == 2) ? 3 : 6);
         cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |       RANK     |" << endl;
+        cout << "\t\t\t\t |   LEADERBOARD  |" << endl;
         cout << "\t\t\t\t ==================" << endl
              << endl;
 
