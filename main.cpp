@@ -8,24 +8,23 @@
 void loadingPage()
 {
     int color = 1;
-    for (int i = 3; i < 50; i++)
+    for (int i = 3; i < 20; i++)
     {
-        SetColor(0, (++color) % 10 + 3);
+        SetColor(0, (++color) % 10 + 1);
         printLogo();
-        cout << "\t __     ______  _    _  __          _______ _   _ \n"
-                "\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
-                "\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
-                "\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
-                "\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
-                "\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
-        Sleep(1);
+        cout << "\t\t __     ______  _    _  __          _______ _   _ \n"
+                "\t\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
+                "\t\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
+                "\t\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
+                "\t\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
+                "\t\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
+        Sleep(10);
         ClearScreen();
     }
 }
 
 int main()
 {
-
     /*
         SETUP GAME
     */
@@ -85,13 +84,40 @@ int main()
     */
     while (true)
     {
-        /*
-            menu = 1: main menu
-            2: choose gamemode
-            3: custom gamemode
-            4, 5: in gameplay
-            6: leaderboard
-            0: out
+        /* MENU
+            1: main
+                + START:
+
+                    if user not login
+                    -> 7: option play with guest role or account
+                        + GUEST -> 2
+                        + LOGIN
+                        + REGISTER
+                        + BACK -> 1
+
+                    if user login
+                    -> 8: play new game or continue
+                        + NEW GAME -> 2
+                        + CONTINUE:
+                            -> 4: continue game play | if login
+                        + LOGOUT -> 1
+                        + BACK -> 1
+
+                        2: choose game mode
+                            + EASY
+                            + MEDIUM
+                            + HARD
+                            -> 5
+                            + CUSTOM
+                                -> 3: custom game mode
+
+                            5: Game play
+
+                + LEADERBOARD
+                    -> 6: Leaderboard
+
+                + QUIT
+                    -> 0: Quit
         */
         while ((menu > 0 && menu < 4) || menu == 6 || menu == 8)
         {
@@ -138,9 +164,6 @@ int main()
             }
             generateArt(board);
 
-            // if (nmCheck)
-            //     generateNightmare(board, nightmare);
-
             menu++;
             newgame = true;
             srand(time(0));
@@ -155,7 +178,9 @@ int main()
             while (true)
             {
                 gotoxy(5, (board.col + 2) * 5 + 5);
+
                 SetColor(0, 6);
+
                 cout << "Level: " << player.lvl << endl;
                 showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
                 showTime(player.timeleft, oriTime, menu, eot, player.score, suggtime, board, endsugg);
@@ -315,6 +340,7 @@ int main()
 
                 if (player.mode == 4)
                     eraseGame(player, board, lvlcap);
+
                 saveGame(player, playerid, board);
                 deleteMem(board);
                 deleteArt(board);

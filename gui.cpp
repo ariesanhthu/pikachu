@@ -74,7 +74,7 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
     else if (c == KEY_SPACE || c == KEY_ENTER)
     {
         /* MAIN MENU
-            1: START GAME -> MENU LOGIN
+            1: START GAME -> MENU LOGIN (7,8)
             2: LEADER BOARD
             3: QUIT
         */
@@ -88,16 +88,7 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
                 else
                     menu = 7;
             }
-            // CONTINUE -> AFTER START GAME | SHIFT TO MENU GAMEMODE
-            // else if (mCurX == 2)
-            // {
-            //     if (mode)
-            //     {
-            //         cont = true;
-            //         mCurX = 1;
-            //         menu = 6;
-            //     }
-            // }
+
             // leader board
             else if (mCurX == 2)
                 menu = 6;
@@ -167,34 +158,14 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
                 menu = 4;
             }
         }
-        /*
-            if not LOGIN
-            -> MENU LOGIN
-        */
-        // else if (menu == 7)
-        // {
-        //     if (mCurX == 1)
-        //     {
-        //         menu = 2;
-        //         mCurX = 1;
-        //     }
-        //     else if (mCurX == 2)
-        //     {
-        //         // login
-        //         succlog = true;
-        //     }
-        //     else if (mCurX == 3)
-        //     {
-        //         // res
-        //     }
-        //     else if (mCurX == 4)
-        //     {
-        //         menu = 1;
-        //         mCurX = 1;
-        //     }
-        // }
-        /*
-            IF LOGIN
+    
+        /*IF LOGIN
+
+            SHOW THIS MENU
+                1: NEW GAME
+                2: CONTINUE
+                3: LOGOUT
+                4: BACK
         */
         else if (menu == 8)
         {
@@ -205,7 +176,11 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
             }
             else if (mCurX == 2)
             {
-                // continue
+                if (mode)
+                {
+                    cont = true;
+                    mCurX = 1;
+                }
                 menu = 4;
             }
             // LOGOUT
@@ -384,6 +359,9 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
 
         break;
     }
+    /*
+        MENU AFTER LOGIN
+    */
     case 8:
     {
         SetColor(0, (mCurX == 1) ? 3 : 6);
