@@ -12,12 +12,12 @@ void loadingPage()
     {
         SetColor(0, (++color) % 10 + 1);
         printLogo();
-        cout << "\t __     ______  _    _  __          _______ _   _ \n"
-                "\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
-                "\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
-                "\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
-                "\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
-                "\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
+        cout << "\t\t __     ______  _    _  __          _______ _   _ \n"
+                "\t\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
+                "\t\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
+                "\t\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
+                "\t\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
+                "\t\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
         Sleep(1);
         ClearScreen();
     }
@@ -158,9 +158,13 @@ int main()
             while (true)
             {
                 gotoxy(5, (board.col + 2) * 5 + 5);
+                
                 SetColor(0, 6);
+                
                 cout << "Level: " << player.lvl << endl;
+                
                 showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, nmCheck, nightmare, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
+                
                 showTime(player.timeleft, oriTime, menu, eot, player.score, suggtime, board, endsugg);
 
                 // If there is a key input event, then run the following function
@@ -318,6 +322,7 @@ int main()
 
                 if (player.mode == 4)
                     eraseGame(player, board, lvlcap);
+
                 saveGame(player, playerid, board);
                 deleteMem(board);
                 deleteArt(board);

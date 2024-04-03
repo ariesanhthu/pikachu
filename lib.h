@@ -4,10 +4,10 @@
 #include <iostream>
 #include <iomanip>
 
-// For time feature
+// Time feature library
 #include <ctime>
 
-// For building player struct
+// Bulding player struct
 #include <cstring>
 #include <string>
 
@@ -15,27 +15,25 @@
 #include <vector>
 #include <deque>
 
-// For the game logic
+// Algorithm and game logic library
 #include <cmath>
 #include <algorithm>
 
-// For the console settings
+// COnsole setting library
 #include <windows.h>
 
-// For file reading and writing
+// File library
 #include <fstream>
 #include <stdio.h>
 
-// For keyboard input
+// Library for keyboard input
 #include <conio.h>
 #include <stdlib.h>
 
-// For music 
+// Music feature library 
 #include <mmsystem.h>
 
 using namespace std;
-
-//define ascii code
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -50,8 +48,8 @@ using namespace std;
 //Board structure
 struct BoardState{
     int row = 4, col = 6;
-    int **board;
-    char **display;
+    int** board;
+    char** display;
 };
 
 //Player and save structure 

@@ -94,7 +94,7 @@ void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY
     {
         SetColor(0, 6);
         for (int i = 0; i <= a.col + 1; i++)
-            cout << "####";
+            cout << "#####";
         cout << "####" << endl;
 		
         gotoxy(3 * (a.row + 2) + 2, 0);
@@ -319,7 +319,7 @@ void drawLine(int line[][2])
                 swap (y1, y2);
             for (int i = y1 * 5 + 4; i <= y2 * 5 + 4; i++){
                     gotoxy(x1 * 3 + 3, i);
-                    cout << '@';
+                    cout << '*';
                 }
         }
         else{
@@ -327,7 +327,7 @@ void drawLine(int line[][2])
                 swap (x1, x2);
             for (int i = x1 * 3 + 3; i <= x2 * 3 + 3; i++){
                     gotoxy(i, y1 * 5 + 4);
-                    cout << '@';
+                    cout << '*';
                 }
         }
     }
