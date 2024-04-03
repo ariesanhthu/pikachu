@@ -8,9 +8,9 @@
 void loadingPage()
 {
     int color = 1;
-    for (int i = 3; i < 50; i++)
+    for (int i = 3; i < 40; i++)
     {
-        SetColor(0, (++color) % 10 + 3);
+        SetColor(0, (++color) % 10 + 1);
         printLogo();
         cout << "\t __     ______  _    _  __          _______ _   _ \n"
                 "\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
@@ -89,8 +89,11 @@ int main()
             menu = 1: main menu
             2: choose gamemode
             3: custom gamemode
-            4, 5: in gameplay
+            4: continue | if login
+            5: in gameplay
             6: leaderboard
+            7: not login
+            8: after login
             0: out
         */
         while ((menu > 0 && menu < 4) || menu == 6 || menu == 8)
