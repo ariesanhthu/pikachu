@@ -8,7 +8,7 @@
 void loadingPage()
 {
     int color = 1;
-    for (int i = 3; i < 40; i++)
+    for (int i = 3; i < 20; i++)
     {
         SetColor(0, (++color) % 10 + 1);
         printLogo();
@@ -18,14 +18,13 @@ void loadingPage()
                 "\t\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
                 "\t\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
                 "\t\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
-        Sleep(1);
+        Sleep(10);
         ClearScreen();
     }
 }
 
 int main()
 {
-
     /*
         SETUP GAME
     */
