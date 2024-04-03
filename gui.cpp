@@ -205,7 +205,11 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
             }
             else if (mCurX == 2)
             {
-                // continue
+                if (mode)
+                {
+                    cont = true;
+                    mCurX = 1;
+                }
                 menu = 4;
             }
             // LOGOUT
