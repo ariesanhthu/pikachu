@@ -59,7 +59,7 @@ bool findPath(BoardState a, int x1, int x2, int y1, int y2, int line[][2]){
 		}
 	}
 
-    return route.size() >= 2 &&  route.size() <= 4;
+    return route.size() >= 2 && route.size() <= 4;
 }
 
 

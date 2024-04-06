@@ -216,48 +216,69 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
     case 1:
     {
 
-        SetColor(0, (mCurX == 1) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |      START     |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 1) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 1) 
+        cout << "\t\t\t\t> |      START     | <" << endl;
+        else             
+        cout << "\t\t\t\t  |      START     |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
 
-        SetColor(0, (mCurX == 2) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |   LEADERBOARD  |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 2) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 2) 
+        cout << "\t\t\t\t> |   LEADERBOARD  | <" << endl;
+        else             
+        cout << "\t\t\t\t  |   LEADERBOARD  |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
 
         // END APPLICATION
-        SetColor(0, (mCurX == 3) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |      QUIT      |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 3) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 3) 
+        cout << "\t\t\t\t> |      QUIT      | <" << endl;
+        else             
+        cout << "\t\t\t\t  |      QUIT      |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
         SetColor(0, 6);
         break;
     }
     case 2:
     {
-        SetColor(0, (mCurX == 1) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |      EASY      |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 1) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 1) 
+        cout << "\t\t\t\t> |      EASY      | <" << endl;
+        else
+        cout << "\t\t\t\t  |      EASY      |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
-        SetColor(0, (mCurX == 2) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |     MEDIUM     |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 2) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 2) 
+        cout << "\t\t\t\t> |     MEDIUM     | <" << endl;
+        else
+        cout << "\t\t\t\t  |     MEDIUM     |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
-        SetColor(0, (mCurX == 3) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |      HARD      |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 3) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 3) 
+        cout << "\t\t\t\t> |      HARD      | <" << endl;
+        else
+        cout << "\t\t\t\t  |      HARD      |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
-        SetColor(0, (mCurX == 4) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |     CUSTOM     |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 4) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 4) 
+        cout << "\t\t\t\t> |     CUSTOM     | <" << endl;
+        else
+        cout << "\t\t\t\t  |     CUSTOM     |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
         SetColor(0, 6);
         break;
@@ -270,18 +291,18 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
         {
             // MODIFIED -> even number
             SetColor(0, 3);
-            gotoxy(15, 32);
+            gotoxy(15, 30);
             cout << "===============================================";
-            gotoxy(16, 32);
+            gotoxy(16, 30);
             cout << "| Choose the number of rows:       <  " << setw(2) << setfill(' ') << row << "  >  #";
-            gotoxy(17, 32);
+            gotoxy(17, 30);
             cout << "===============================================";
             SetColor(0, 6);
-            gotoxy(19, 32);
+            gotoxy(19, 30);
             cout << "===============================================";
-            gotoxy(20, 32);
+            gotoxy(20, 30);
             cout << "| Choose the number of columns:       " << setw(2) << setfill(' ') << col << "     #";
-            gotoxy(21, 32);
+            gotoxy(21, 30);
             cout << "===============================================";
             break;
         }
@@ -364,25 +385,37 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
     */
     case 8:
     {
-        SetColor(0, (mCurX == 1) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |    NEW GAME    |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 1) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 1) 
+        cout << "\t\t\t\t> |    NEW GAME    | <" << endl;
+        else
+        cout << "\t\t\t\t  |    NEW GAME    |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
-        SetColor(0, (mCurX == 2) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |    CONTINUE    |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 2) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 2) 
+        cout << "\t\t\t\t> |    CONTINUE    | <" << endl;
+        else
+        cout << "\t\t\t\t  |    CONTINUE    |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
-        SetColor(0, (mCurX == 3) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |     LOGOUT     |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 3) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 3) 
+        cout << "\t\t\t\t> |     LOGOUT     | <" << endl;
+        else
+        cout << "\t\t\t\t  |     LOGOUT     |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
-        SetColor(0, (mCurX == 4) ? 3 : 6);
-        cout << "\t\t\t\t ==================" << endl;
-        cout << "\t\t\t\t |      BACK      |" << endl;
-        cout << "\t\t\t\t ==================" << endl
+        SetColor(0, (mCurX == 4) ? 10 : 6);
+        cout << "\t\t\t\t  ==================" << endl;
+        if (mCurX == 4) 
+        cout << "\t\t\t\t> |      BACK      | <" << endl;
+        else
+        cout << "\t\t\t\t  |      BACK      |" << endl;
+        cout << "\t\t\t\t  ==================" << endl
              << endl;
         SetColor(0, 6);
         break;
