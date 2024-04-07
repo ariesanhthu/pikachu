@@ -256,6 +256,12 @@ int main()
                         resetcheck = false;
                     }
                 }
+                else {
+                    printCell(12, 4, board.board[x1][y1], x1, y1);
+                    printCell(12, 4, board.board[x2][y2], x2, y2);
+                    Sleep(300);
+                    showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
+                }
                 for (int i = 0; i < 4; i++)
                     for (int u = 0; u < 2; u++)
                         line[i][u] = 0;
