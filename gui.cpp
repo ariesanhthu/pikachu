@@ -4,6 +4,7 @@
 // HEADER NAME
 void printLogo()
 {
+    SetColor(0, 3);
     cout << "\t ________  ___  ___  __    ________  ________  ___  ___  ___  ___     \n"
             "\t|\\   __  \\|\\  \\|\\  \\|\\  \\ |\\   __  \\|\\   ____\\|\\  \\|\\  \\|\\  \\|\\  \\    \n"
             "\t\\ \\  \\|\\  \\ \\  \\ \\  \\/  /|\\ \\  \\|\\  \\ \\  \\___|\\ \\  \\\\\\  \\ \\  \\\\\\  \\   \n"
@@ -13,6 +14,27 @@ void printLogo()
             "\t    \\|__|     \\|__|\\|__| \\|__|\\|__|\\|__|\\|_______|\\|__|\\|__|\\|_______|";
     cout << endl
          << endl;
+}
+
+/*
+    SHOW THIS TEXT IF THE PLAYER WIN THE GAME
+*/
+void loadingPage()
+{
+    int color = 1;
+    for (int i = 3; i < 20; i++)
+    {
+        SetColor(0, (++color) % 10 + 1);
+        printLogo();
+        cout << "\t\t __     ______  _    _  __          _______ _   _ \n"
+                "\t\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
+                "\t\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
+                "\t\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
+                "\t\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
+                "\t\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
+        Sleep(10);
+        ClearScreen();
+    }
 }
 
 // Generating menu
@@ -208,9 +230,6 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
 // Print the menu
 void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
 {
-    SetColor(0, 3);
-    printLogo();
-
     switch (menu)
     {
     case 1:

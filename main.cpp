@@ -2,27 +2,6 @@
 #include "gui.cpp"
 #include "account.cpp"
 
-/*
-    SHOW THIS TEXT IF THE PLAYER WIN THE GAME
-*/
-void loadingPage()
-{
-    int color = 1;
-    for (int i = 3; i < 20; i++)
-    {
-        SetColor(0, (++color) % 10 + 1);
-        printLogo();
-        cout << "\t\t __     ______  _    _  __          _______ _   _ \n"
-                "\t\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
-                "\t\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
-                "\t\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
-                "\t\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
-                "\t\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
-        Sleep(10);
-        ClearScreen();
-    }
-}
-
 int main()
 {
     /*
@@ -119,12 +98,14 @@ int main()
                 + QUIT
                     -> 0: Quit
         */
+        ClearScreen();
+        printLogo();
         while ((menu > 0 && menu < 4) || menu == 6 || menu == 8)
         {
             // login
             // while (!succlog)
             //     login(player, board, mCurX, menu, playerid, succlog, lvlcap, oriTime);
-            ClearScreen();
+            ClearScreen(0, 10, 200, 100);
             generateMenu(lb, player.mode, board.row, board.col, menu, mCurX, succlog, cont, player.lvl);
         }
         // Press quit

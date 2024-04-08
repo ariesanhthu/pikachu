@@ -88,12 +88,12 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
     {
         /* SETUP
          */
-        ClearScreen();
+        ClearScreen(0, 10, 200, 100);
         // background color, text color
-        SetColor(0, 3);
+        //SetColor(0, 3);
 
         // Brand Name
-        printLogo();
+        //printLogo();
 
         if (submenu == 1)
         {
