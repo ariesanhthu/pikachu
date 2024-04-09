@@ -3,6 +3,8 @@
 // Clearing console screen
 void ClearScreen();
 
+void ClearScreen(int x, int y);
+
 // Changing the console size
 void ResizeWindow(int posx, int posy, int width, int length);
 

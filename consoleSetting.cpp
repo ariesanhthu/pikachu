@@ -41,6 +41,20 @@ void ClearScreen()
     SetConsoleCursorPosition(hStdOut, homeCoords);
 }
 
+void ClearScreen(SHORT x, SHORT y, SHORT length, SHORT width)
+{
+    HANDLE hStdOut = GetStdHandle(STD_OUTPUT_HANDLE);
+    DWORD written;
+
+    for (SHORT i = 0; i < width; i++)
+    {
+        COORD coord = { x, y + i };
+        FillConsoleOutputCharacter(hStdOut, ' ', length, coord, &written);
+    }
+
+    COORD pos = {x, y};
+    SetConsoleCursorPosition(hStdOut, pos);
+}
 /////////////////////////////////////////////////////////////
 void ResizeWindow(int posx, int posy, int width, int length)
 {

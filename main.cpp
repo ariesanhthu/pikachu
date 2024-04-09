@@ -2,27 +2,6 @@
 #include "gui.cpp"
 #include "account.cpp"
 
-/*
-    SHOW THIS TEXT IF THE PLAYER WIN THE GAME
-*/
-void loadingPage()
-{
-    int color = 1;
-    for (int i = 3; i < 20; i++)
-    {
-        SetColor(0, (++color) % 10 + 1);
-        printLogo();
-        cout << "\t\t __     ______  _    _  __          _______ _   _ \n"
-                "\t\t \\ \\   / / __ \\| |  | | \\ \\        / /_   _| \\ | |\n"
-                "\t\t  \\ \\_/ / |  | | |  | |  \\ \\  /\\  / /  | | |  \\| |\n"
-                "\t\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
-                "\t\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
-                "\t\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
-        Sleep(10);
-        ClearScreen();
-    }
-}
-
 int main()
 {
     /*
@@ -73,8 +52,8 @@ int main()
     // For time setting
     time_t oriTime, suggtime = 0;
     bool eot = false;
-    // For nightmare mode
-    bool nmCheck = false, **nightmare;
+    // // For nightmare mode
+    // bool nmCheck = false, **nightmare;
     // For the current player
     int playerid = -1;
     bool succlog = false, cont = false, resetcheck = false, newgame = false, suffle = false;
@@ -119,13 +98,15 @@ int main()
                 + QUIT
                     -> 0: Quit
         */
+        ClearScreen();
+        printLogo();
         while ((menu > 0 && menu < 4) || menu == 6 || menu == 8)
         {
             // login
             // while (!succlog)
             //     login(player, board, mCurX, menu, playerid, succlog, lvlcap, oriTime);
-            ClearScreen();
-            generateMenu(lb, player.mode, board.row, board.col, menu, mCurX, nmCheck, succlog, cont, player.lvl);
+            ClearScreen(0, 10, 200, 100);
+            generateMenu(lb, player.mode, board.row, board.col, menu, mCurX, succlog, cont, player.lvl);
         }
         // Press quit
         if (menu == 0)
@@ -182,9 +163,7 @@ int main()
                 SetColor(0, 6);
 
                 cout << "Level: " << player.lvl << endl;
-
-                showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, nmCheck, nightmare, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
-
+                showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
                 showTime(player.timeleft, oriTime, menu, eot, player.score, suggtime, board, endsugg);
 
                 // If there is a key input event, then run the following function
@@ -206,8 +185,8 @@ int main()
                     for (int i = 1; i <= board.row; i++)
                         for (int u = 1; u <= board.col; u++)
                             if (board.board[i][u])
-                                printCell(0, board.board[i][u] % 5 + 9, board.board[i][u], i, u, 0, temp);
-                    printCell(8, 7, board.board[curX][curY], curX, curY, 0, temp);
+                                printCell(0, board.board[i][u] % 5 + 9, board.board[i][u], i, u);
+                    printCell(8, 7, board.board[curX][curY], curX, curY);
                     oriTime -= 10;
                     resetcheck = false;
                     suffle = false;
@@ -231,10 +210,10 @@ int main()
                     player.count -= 2;
 
                     drawLine(line);
-                    Sleep(150);
+                    Sleep(200);
                     clearLine(line, board);
                     levelCheck(board, x1, y1, x2, y2, player.lvl, lvlcap);
-                    showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, nmCheck, nightmare, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
+                    showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
                     // If there are still cells on the board
                     if (player.count)
 
@@ -252,11 +231,17 @@ int main()
                         for (int i = 1; i <= board.row; i++)
                             for (int u = 1; u <= board.col; u++)
                                 if (board.board[i][u])
-                                    printCell(0, board.board[i][u] % 5 + 9, board.board[i][u], i, u, 0, temp);
+                                    printCell(0, board.board[i][u] % 5 + 9, board.board[i][u], i, u);
 
                         oriTime -= 10;
                         resetcheck = false;
                     }
+                }
+                else {
+                    printCell(12, 4, board.board[x1][y1], x1, y1);
+                    printCell(12, 4, board.board[x2][y2], x2, y2);
+                    Sleep(300);
+                    showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
                 }
                 for (int i = 0; i < 4; i++)
                     for (int u = 0; u < 2; u++)
@@ -297,6 +282,8 @@ int main()
                             player.lvl++;
                             deleteMem(board);
                             deleteArt(board);
+                            // if (nmCheck)
+                            //     deleteNightmare(board, nightmare);
                             menu = 4;
                             break;
                         }
@@ -307,11 +294,11 @@ int main()
                             updateLB(lb, player);
                             deleteMem(board);
                             deleteArt(board);
-                            if (nmCheck)
-                            {
-                                deleteNightmare(board, nightmare);
-                                nmCheck = false;
-                            }
+                            // if (nmCheck)
+                            // {
+                            //     deleteNightmare(board, nightmare);
+                            //     nmCheck = false;
+                            // }
                             eraseGame(player, board, lvlcap);
                             saveGame(player, playerid, board);
                             for (int i = 1; i < 10; i++)
@@ -345,11 +332,11 @@ int main()
                 deleteMem(board);
                 deleteArt(board);
 
-                if (nmCheck)
-                {
-                    deleteNightmare(board, nightmare);
-                    nmCheck = false;
-                }
+                // if (nmCheck)
+                // {
+                //     deleteNightmare(board, nightmare);
+                //     nmCheck = false;
+                // }
 
                 for (int i = 1; i < 10; i++)
                     lvlcap[i] = 0;

@@ -7,25 +7,37 @@
 void showSubMenu(int option)
 {
     // điều kiện: nếu đúng thì text color = 3, ngược lại = 6
-    SetColor(0, (option == 1) ? 3 : 6);
-    cout << "\t\t\t\t ==================" << endl;
-    cout << "\t\t\t\t |      GUEST     |" << endl;
-    cout << "\t\t\t\t ==================" << endl
+    SetColor(0, (option == 1) ? 10 : 6);
+    cout << "\t\t\t\t  ==================" << endl;
+    if (option == 1) 
+    cout << "\t\t\t\t> |      GUEST     | <" << endl;
+    else
+    cout << "\t\t\t\t  |      GUEST     |" << endl;
+    cout << "\t\t\t\t  ==================" << endl
          << endl;
-    SetColor(0, (option == 2) ? 3 : 6);
-    cout << "\t\t\t\t ==================" << endl;
-    cout << "\t\t\t\t |      LOGIN     |" << endl;
-    cout << "\t\t\t\t ==================" << endl
+    SetColor(0, (option == 2) ? 10 : 6);
+    cout << "\t\t\t\t  ==================" << endl;
+    if (option == 2) 
+    cout << "\t\t\t\t> |      LOGIN     | <" << endl;
+    else
+    cout << "\t\t\t\t  |      LOGIN     |" << endl;
+    cout << "\t\t\t\t  ==================" << endl
          << endl;
-    SetColor(0, (option == 3) ? 3 : 6);
-    cout << "\t\t\t\t ==================" << endl;
-    cout << "\t\t\t\t |     REGISTER   |" << endl;
-    cout << "\t\t\t\t ==================" << endl
+    SetColor(0, (option == 3) ? 10 : 6);
+    cout << "\t\t\t\t  ==================" << endl;
+    if (option == 3) 
+    cout << "\t\t\t\t> |    REGISTER    | <" << endl;
+    else
+    cout << "\t\t\t\t  |    REGISTER    |" << endl;
+    cout << "\t\t\t\t  ==================" << endl
          << endl;
-    SetColor(0, (option == 4) ? 3 : 6);
-    cout << "\t\t\t\t ==================" << endl;
-    cout << "\t\t\t\t |      BACK      |" << endl;
-    cout << "\t\t\t\t ==================" << endl
+    SetColor(0, (option == 4) ? 10 : 6);
+    cout << "\t\t\t\t  ==================" << endl;
+    if (option == 4) 
+    cout << "\t\t\t\t> |      BACK      | <" << endl;
+    else
+    cout << "\t\t\t\t  |      BACK      |" << endl;
+    cout << "\t\t\t\t  ==================" << endl
          << endl;
     SetColor(0, 6);
 }
@@ -36,32 +48,32 @@ void showSubMenu(int option)
 void showFormInput(bool isLoginForm)
 {
     SetColor(0, 6);
-    gotoxy(15, 30);
+    gotoxy(8, 30);
     cout << "USERNAME";
-    gotoxy(16, 30);
+    gotoxy(9, 30);
     cout << "##################################";
-    gotoxy(17, 30);
+    gotoxy(10, 30);
     cout << "#                                #";
-    gotoxy(18, 30);
+    gotoxy(11, 30);
     cout << "##################################";
-    gotoxy(20, 30);
+    gotoxy(12, 30);
     cout << "PASSWORD";
-    gotoxy(21, 30);
+    gotoxy(13, 30);
     cout << "##################################";
-    gotoxy(22, 30);
+    gotoxy(14, 30);
     cout << "#                                #";
-    gotoxy(23, 30);
+    gotoxy(15, 30);
     cout << "##################################";
 
     if (!isLoginForm)
     {
-        gotoxy(25, 30);
+        gotoxy(17, 30);
         cout << "PASSWORD CONFIRM";
-        gotoxy(26, 30);
+        gotoxy(18, 30);
         cout << "##################################";
-        gotoxy(27, 30);
+        gotoxy(19, 30);
         cout << "#                                #";
-        gotoxy(28, 30);
+        gotoxy(20, 30);
         cout << "##################################";
     }
 }
@@ -76,12 +88,12 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
     {
         /* SETUP
          */
-        ClearScreen();
+        ClearScreen(0, 10, 200, 100);
         // background color, text color
-        SetColor(0, 3);
+        //SetColor(0, 3);
 
         // Brand Name
-        printLogo();
+        //printLogo();
 
         if (submenu == 1)
         {
@@ -157,7 +169,7 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
             // Input username
             char c;
             int countChar = 0;
-            gotoxy(17, 32);
+            gotoxy(10, 32);
             while (c = _getch())
             {
                 /*
@@ -177,9 +189,9 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                 else if (c == 8 && countChar > 0)
                 {
                     countChar = ((countChar - 1) > 0 ? countChar - 1 : 0);
-                    gotoxy(17, 32 + countChar);
+                    gotoxy(10, 32 + countChar);
                     cout << " ";
-                    gotoxy(17, 32 + countChar);
+                    gotoxy(10, 32 + countChar);
                 }
                 else if (c != 8 && countChar < 20 && countChar >= 0)
                 {
@@ -188,12 +200,12 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                     countChar++;
                 }
             }
-            gotoxy(17, 32);
+            gotoxy(10, 32);
             cout << player.username;
             countChar = 0;
 
             // Input password
-            gotoxy(22, 32);
+            gotoxy(14, 32);
             while (c = _getch())
             {
                 /*
@@ -213,9 +225,9 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                 else if (c == 8 && countChar > 0)
                 {
                     countChar = ((countChar - 1) > 0 ? countChar - 1 : 0);
-                    gotoxy(22, 32 + countChar);
+                    gotoxy(14, 32 + countChar);
                     cout << " ";
-                    gotoxy(22, 32 + countChar);
+                    gotoxy(14, 32 + countChar);
                 }
                 else if (c != 8 && countChar < 20 && countChar >= 0)
                 {
@@ -230,7 +242,7 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
             if (!log)
             {
                 countChar = 0;
-                gotoxy(27, 32);
+                gotoxy(19, 32);
                 char rePass[32] = "";
                 while (c = _getch())
                 {
@@ -251,9 +263,9 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
                     else if (c == 8 && countChar > 0)
                     {
                         countChar = ((countChar - 1) > 0 ? countChar - 1 : 0);
-                        gotoxy(22, 32 + countChar);
+                        gotoxy(19, 32 + countChar);
                         cout << " ";
-                        gotoxy(22, 32 + countChar);
+                        gotoxy(19, 32 + countChar);
                     }
                     else if (c != 8 && countChar < 20 && countChar >= 0)
                     {
