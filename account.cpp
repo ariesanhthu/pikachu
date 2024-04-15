@@ -1,3 +1,11 @@
+/* Account
+- Show menu option 1 (when the player does not login)
+- Validate user, password
+- Create Account
+- Can load the board game of the player
+- Can save the boar game of the player
+*/
+
 #include "account.h"
 #include "gui.h"
 
@@ -78,6 +86,11 @@ void showFormInput(bool isLoginForm)
     }
 }
 
+/*
+    This function is used to show the menu
+   - Handling the player option
+   - Navigating program
+*/
 void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playerid, bool &succlog, int lvlcap[], time_t &oriTime)
 {
     // Login menu
@@ -86,15 +99,8 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
 
     while (!succlog)
     {
-        /* SETUP
-         */
         ClearScreen(0, 10, 200, 100);
-        // background color, text color
-        //SetColor(0, 3);
-
-        // Brand Name
-        //printLogo();
-
+     
         if (submenu == 1)
         {
             showSubMenu(mCurX);
@@ -158,9 +164,6 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
         // Login and register
         else
         {
-            /*
-                SET UP
-            */
             // FOMR INPUT
             showFormInput(log);
             ShowConsoleCursor(true);
@@ -324,7 +327,13 @@ void login(PlayerState &player, BoardState &a, int &mCurX, int &menu, int &playe
     }
 }
 
-////////////////////////////////////////////////////////////////////////////
+/*
+ Validate Login
+- If check is false: Go to this menu (reload) return error
+- else 
+    set succ = true
+    get user id
+*/
 void checkLogin(PlayerState player, int &playerid, bool &succ, int &submenu)
 {
     // Reading file for checking login
