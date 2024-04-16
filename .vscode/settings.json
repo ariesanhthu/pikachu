@@ -1,7 +1,12 @@
 {
   "files.associations": {
     "iostream": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "vector": "cpp",
+    "format": "cpp",
+    "xlocale": "cpp",
+    "xmemory": "cpp",
+    "xutility": "cpp"
   },
   "C_Cpp_Runner.msvcBatchPath": "",
   "C_Cpp_Runner.cCompilerPath": "gcc",

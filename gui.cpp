@@ -442,7 +442,7 @@ void printMenu(LeaderBoard lb, int row, int col, int menu, int mCurX)
     }
 }
 
-///////////////////////////////////////////////////////////////////////////////////////
+//======== Handling key board option of the player ========
 void keyboardSelect(BoardState &a, int &curX, int &curY, int &x1, int &y1, int &x2, int &y2, int &menu, time_t &suggtime, time_t &timeleft, bool &hint, bool &choose_1, bool &choose_2, bool &suffle)
 {
     int c = getch(), ch;
@@ -509,8 +509,7 @@ void keyboardSelect(BoardState &a, int &curX, int &curY, int &x1, int &y1, int &
         suffle = true;
 }
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Reset the current board
+//======== Reset the current board ========
 void resetGame(BoardState a, int &count, int lvl, int lvlcap[], int &curX, int &curY, int &FcurX, int &FcurY)
 {
     count = a.row * a.col;
@@ -535,8 +534,7 @@ void resetGame(BoardState a, int &count, int lvl, int lvlcap[], int &curX, int &
     lvlcap[9] = lvl + lvlcap[8];
 }
 
-////////////////////////////////////////////////////////////////
-// Reset the attributes of the game
+//======== Reset the attributes of the game ========
 void eraseGame(PlayerState &player, BoardState &a, int lvlcap[])
 {
     a.row = 4;
@@ -549,8 +547,8 @@ void eraseGame(PlayerState &player, BoardState &a, int lvlcap[])
     player.score = 0;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
-// Countdown
+//======== Board display time, score, intruction key ========
+
 void showTime(int &timeleft, time_t oriTime, int &menu, bool &eot, int score, time_t &suggtime, BoardState a, bool &endsugg)
 {
     time_t nowTime = time(0);
@@ -577,15 +575,15 @@ void showTime(int &timeleft, time_t oriTime, int &menu, bool &eot, int score, ti
         }
     SetColor(0, 6);
     gotoxy(6, (a.col + 2) * 5 + 5);
-    cout << "##############################" << endl;
+    cout << "______________________________" << endl;
     gotoxy(7, (a.col + 2) * 5 + 5);
-    cout << "# Time left: " << setw(3) << setfill(' ') << timeleft << "             #" << endl;
+    cout << "| Time left: " << setw(3) << setfill(' ') << timeleft << "             |" << endl;
     gotoxy(8, (a.col + 2) * 5 + 5);
-    cout << "# Press H for hints          #" << endl;
+    cout << "| Press H for hints          |" << endl;
     gotoxy(9, (a.col + 2) * 5 + 5);
-    cout << "# Press R for board shuffle  #" << endl;
+    cout << "| Press R for board shuffle  |" << endl;
     gotoxy(10, (a.col + 2) * 5 + 5);
-    cout << "# Press Esc for exit         #" << endl;
+    cout << "| Press Esc for exit         |" << endl;
     gotoxy(11, (a.col + 2) * 5 + 5);
-    cout << "##############################" << endl;
+    cout << "______________________________" << endl;
 }

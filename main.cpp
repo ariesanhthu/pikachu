@@ -63,22 +63,31 @@ int main()
     */
     while (true)
     {
-        /* MENU
+        /*  MENU NAME INDEX
+            0: quit
+            1: main
+            2: choose game mode
+            3: custom game mode
+            4: continue game play (data load)
+            5: Game play (new game)
+            6: Leaderboard
+            7: option play with guest role or account
+            8: play new game or continue
+        
+       // ================================================
+        
+            MENU OPTION AND FLOW
             1: main
                 + START:
-
-                    if user not login
-                    -> 7: option play with guest role or account
+                    (if user not login) -> 7: option play with guest role or account
                         + GUEST -> 2
                         + LOGIN
                         + REGISTER
                         + BACK -> 1
 
-                    if user login
-                    -> 8: play new game or continue
+                    (if user login) -> 8: play new game or continue
                         + NEW GAME -> 2
-                        + CONTINUE:
-                            -> 4: continue game play | if login
+                        + CONTINUE -> 4: continue game play | if login
                         + LOGOUT -> 1
                         + BACK -> 1
 
@@ -87,16 +96,13 @@ int main()
                             + MEDIUM
                             + HARD
                             -> 5
-                            + CUSTOM
-                                -> 3: custom game mode
+                            + CUSTOM -> 3: custom game mode
 
-                            5: Game play
+                        5: Game play
 
-                + LEADERBOARD
-                    -> 6: Leaderboard
+                + LEADERBOARD -> 6: Leaderboard
 
-                + QUIT
-                    -> 0: Quit
+                + QUIT -> 0: Quit
         */
         ClearScreen();
         printLogo();
@@ -331,12 +337,6 @@ int main()
                 saveGame(player, playerid, board);
                 deleteMem(board);
                 deleteArt(board);
-
-                // if (nmCheck)
-                // {
-                //     deleteNightmare(board, nightmare);
-                //     nmCheck = false;
-                // }
 
                 for (int i = 1; i < 10; i++)
                     lvlcap[i] = 0;
