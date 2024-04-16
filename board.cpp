@@ -109,7 +109,7 @@ void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY
             }
             for (int j = 0; j <= a.col + 1; j++)
                 if(a.board[i][j])
-                    printCell(0, a.board[i][j] % 5 + 9, a.board[i][j], i, j);
+                    printCell(0, a.board[i][j] % 6 + 9, a.board[i][j], i, j);
                 else
                     clearCell(0, a, i, j);
         }
@@ -137,7 +137,7 @@ void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY
                 
                 else
                     if(a.board[sugx1][sugy1])
-                        printCell(0, a.board[sugx1][sugy1] % 5 + 9, a.board[sugx1][sugy1], sugx1, sugy1);
+                        printCell(0, a.board[sugx1][sugy1] % 6 + 9, a.board[sugx1][sugy1], sugx1, sugy1);
                     
                     else
                         clearCell(0, a, sugx1, sugy1);
@@ -151,7 +151,7 @@ void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY
                 
                 else
                     if(a.board[sugx2][sugy2])
-                        printCell(0, a.board[sugx2][sugy2] % 5 + 9, a.board[sugx2][sugy2], sugx2, sugy2);
+                        printCell(0, a.board[sugx2][sugy2] % 6 + 9, a.board[sugx2][sugy2], sugx2, sugy2);
                     
                     else
                         clearCell(0, a, sugx2, sugy2);
@@ -164,11 +164,11 @@ void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY
             
 			else 
 				if(((FcurX == sugx1 && FcurY == sugy1) || (FcurX == sugx2 && FcurY == sugy2)) && suggtime)
-					printCell(a.board[FcurX][FcurY] % 5 + 1, a.board[FcurX][FcurY] % 5 + 9, a.board[FcurX][FcurY], FcurX, FcurY);
+					printCell(a.board[FcurX][FcurY] % 5 + 1, a.board[FcurX][FcurY] % 6 + 9, a.board[FcurX][FcurY], FcurX, FcurY);
             
 				else 
 					if(a.board[FcurX][FcurY])
-						printCell(0, a.board[FcurX][FcurY] % 5 + 9, a.board[FcurX][FcurY], FcurX, FcurY);
+						printCell(0, a.board[FcurX][FcurY] % 6 + 9, a.board[FcurX][FcurY], FcurX, FcurY);
             
 					else
 						clearCell(0, a, FcurX, FcurY);
@@ -194,16 +194,16 @@ void showBoard(BoardState a, int lvl, int curX, int curY, int &FcurX, int &FcurY
             }
             if(hint){
                 if(sugx1 != x1 || sugy1 != y1)
-                    printCell(a.board[sugx1][sugy1] % 5 + 1, a.board[sugx1][sugy1] % 5 + 9, a.board[sugx1][sugy1], sugx1, sugy1);
+                    printCell(a.board[sugx1][sugy1] % 5 + 1, a.board[sugx1][sugy1] % 6 + 9, a.board[sugx1][sugy1], sugx1, sugy1);
                     
                 if(sugx2 != x1 || sugy2 != y1)
-                    printCell(a.board[sugx2][sugy2] % 5 + 1, a.board[sugx2][sugy2] % 5 + 9, a.board[sugx2][sugy2], sugx2, sugy2);
+                    printCell(a.board[sugx2][sugy2] % 5 + 1, a.board[sugx2][sugy2] % 6 + 9, a.board[sugx2][sugy2], sugx2, sugy2);
 
                 hint = false;
             }
             if(choose_2){
                 if(a.board[x1][y1])
-                    printCell(0, a.board[x1][y1] % 5 + 9, a.board[x1][y1], x1, y1);
+                    printCell(0, a.board[x1][y1] % 6 + 9, a.board[x1][y1], x1, y1);
                 else
                     clearCell(0, a, x1, y1);
                 if(a.board[x2][y2])
