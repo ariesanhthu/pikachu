@@ -158,15 +158,6 @@ void generateMenu(LeaderBoard lb, int &mode, int &row, int &col, int &menu, int 
                     col = 10;
                     break;
                 }
-                case 4:
-                {
-                    lvl = 1;
-                    mode = 4;
-                    row = 10;
-                    col = 10;
-                    // nmCheck = true;
-                    break;
-                }
                 }
                 menu = 4;
             }
