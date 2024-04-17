@@ -48,7 +48,7 @@ void ClearScreen(SHORT x, SHORT y, SHORT length, SHORT width)
 
     for (SHORT i = 0; i < width; i++)
     {
-        COORD coord = { x, y + i };
+        COORD coord = {x, short(y + i)};
         FillConsoleOutputCharacter(hStdOut, ' ', length, coord, &written);
     }
 
