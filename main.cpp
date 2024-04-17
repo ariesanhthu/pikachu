@@ -16,8 +16,6 @@ int main()
     ShowConsoleCursor(false);
 
     // Playing music
-
-    // change this path -----------------------------------------------------------------------
     PlaySound(TEXT("others/theme.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
 
     // For random stuff
@@ -28,8 +26,6 @@ int main()
     BoardState board;
     LeaderBoard lb;
     loadLB(lb);
-
-    // cout << lb.hsEasy << "\n";
 
     // For level increasing
     int lvlcap[] = {1, 0, 0, 0, 0, 0, 0, 0, 0, 1};
@@ -52,8 +48,7 @@ int main()
     // For time setting
     time_t oriTime, suggtime = 0;
     bool eot = false;
-    // // For nightmare mode
-    // bool nmCheck = false, **nightmare;
+
     // For the current player
     int playerid = -1;
     bool succlog = false, cont = false, resetcheck = false, newgame = false, suffle = false;
@@ -260,8 +255,7 @@ int main()
                     gotoxy(1, 0);
                     curX = board.row + 2, curY = board.col + 2;
                     FcurX = curX, FcurY = curY;
-                    // showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, nmCheck, nightmare, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
-
+                    
                     // WIN GAME
                     ClearScreen();
                     loadingPage();
@@ -288,8 +282,6 @@ int main()
                             player.lvl++;
                             deleteMem(board);
                             deleteArt(board);
-                            // if (nmCheck)
-                            //     deleteNightmare(board, nightmare);
                             menu = 4;
                             break;
                         }
@@ -300,11 +292,6 @@ int main()
                             updateLB(lb, player);
                             deleteMem(board);
                             deleteArt(board);
-                            // if (nmCheck)
-                            // {
-                            //     deleteNightmare(board, nightmare);
-                            //     nmCheck = false;
-                            // }
                             eraseGame(player, board, lvlcap);
                             saveGame(player, playerid, board);
                             for (int i = 1; i < 10; i++)
