@@ -210,7 +210,7 @@ int main()
                     player.count -= 2;
 
                     drawLine(line);
-                    Sleep(200);
+                    Sleep(300);
                     clearLine(line, board);
                     levelCheck(board, x1, y1, x2, y2, player.lvl, lvlcap);
                     showBoard(board, player.lvl, curX, curY, FcurX, FcurY, x1, y1, x2, y2, suggtime, endsugg, sugx1, sugy1, sugx2, sugy2, newgame, hint, choose_1, choose_2);
