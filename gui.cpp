@@ -22,8 +22,9 @@ void printLogo()
 void loadingPage()
 {
     int color = 1;
-    for (int i = 3; i < 200; i++)
+    for (int i = 3; i < 50; i++)
     {
+        ClearScreen();
         printLogo();
         SetColor(0, (++color) % 10 + 1);
         cout << "\t\t __     ______  _    _  __          _______ _   _ \n"
@@ -32,10 +33,8 @@ void loadingPage()
                 "\t\t   \\   /| |  | | |  | |   \\ \\/  \\/ /   | | | . ` |\n"
                 "\t\t    | | | |__| | |__| |    \\  /\\  /   _| |_| |\\  |\n"
                 "\t\t    |_|  \\____/ \\____/      \\/  \\/   |_____|_| \\_|";
-        Sleep(100);
-        ClearScreen();
+        Sleep(10);
     }
-    Sleep(1000);
 }
 
 // Generating menu

@@ -267,17 +267,17 @@ int main()
                     loadingPage();
 
                     SetColor(0, 6);
-                    gotoxy(5, 5);
+                    gotoxy(15, 33);
                     cout << "Victory royale!!!!";
-                    gotoxy(6, 5);
+                    gotoxy(16, 33);
                     cout << "Your score: " << player.score << endl;
 
                     // Player choice
-                    gotoxy(7, 5);
+                    gotoxy(17, 33);
                     cout << "Continue ?";
-                    gotoxy(8, 5);
+                    gotoxy(18, 33);
                     cout << "ENTER to continue.";
-                    gotoxy(9, 5);
+                    gotoxy(19, 33);
                     cout << "ESC to quit.";
 
                     char input;
